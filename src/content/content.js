@@ -1,15 +1,42 @@
-const body = document.body;
+const BROWSER_ICON = {
+    'Chrome': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png',
+    'Firefox': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/1024px-Firefox_Logo%2C_2017.svg.png',
+    'Safari': 'https://upload.wikimedia.org/wikipedia/ru/9/9f/Safari-icon.png',
+    'Edge': 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Microsoft_Edge_logo.svg/1024px-Microsoft_Edge_logo.svg.png'
+};
 
-body.innerHTML = body.innerHTML.replace(/google/ig, 'Mozilla');
-body.innerHTML = body.innerHTML.replace(/chrome/ig, 'Firefox');
+const BROWSER_COMPANY = {
+    'Chrome': 'Google',
+    'Firefox': 'Mozilla',
+    'Safari': 'Apple',
+    'Edge': 'Microsoft'
+};
 
-const images = body.querySelectorAll('img');
-
-images.forEach(img => {
-    if (img.src.includes('Mozilla') || img.src.includes('Firefox')) {
-        img.src = 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8a86066d-e0ce-4b12-a879-76ff8fc61487/d5afu1i-fd658f8f-9c63-4c92-bb8d-cd5148abefc6.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzhhODYwNjZkLWUwY2UtNGIxMi1hODc5LTc2ZmY4ZmM2MTQ4N1wvZDVhZnUxaS1mZDY1OGY4Zi05YzYzLTRjOTItYmI4ZC1jZDUxNDhhYmVmYzYucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BZ_BxPiyk41apS9n7BNAh2i48VQ7PejNEwD0JEPnqvs';
-        const size = Math.max(img.width, img.height);
-        img.style.width = size + 'px';
-        img.style.height = size + 'px';
+chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => {
+        if (request.popup && request.popup.message) {
+            console.log(request.popup.message.dominated, request.popup.message.dominated);
+            dominateBrowser(request.popup.message.dominator, request.popup.message.dominated);
+        }
+        sendResponse({content: {response: 'Response from Content!'}});
     }
-});
+);
+
+
+function dominateBrowser(dominator, dominated) {
+    const body = document.body;
+    body.innerHTML = body.innerHTML.replace(new RegExp(`${dominated}`, 'ig'), dominator);
+    body.innerHTML = body.innerHTML.replace(new RegExp(`${BROWSER_COMPANY[dominated]}`, 'ig'), BROWSER_COMPANY[dominator]);
+
+    const images = body.querySelectorAll('img');
+
+    images.forEach(img => {
+        if (img.src.includes(dominator)) {
+            img.src = BROWSER_ICON[dominator];
+            const size = Math.max(img.width, img.height);
+            img.style.width = size + 'px';
+            img.style.height = size + 'px';
+        }
+    });
+}
+

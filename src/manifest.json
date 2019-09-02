@@ -1,13 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "Firefox domination",
-  "description": "Replaces text and images that include 'Google Chrome' with 'Mozilla Firefox' by clicking browser action icon.",
-  "version": "0.3.0",
+  "name": "Browser Dominator",
+  "description": "Replaces the name and pictures of one browser with another.",
+  "version": "0.4.0",
   "icons": {
     "48": "icons/icon-48.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon-48.png"
+    "default_icon": "icons/icon-48.png",
+    "default_title": "Browser Dominator",
+    "default_popup": "popup/popup.html"
   },
   "permissions": [
     "activeTab"
@@ -16,5 +18,16 @@
     "scripts": [
       "background/background.js"
     ]
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.google.com/*",
+        "*://*.wikipedia.org/*"
+      ],
+      "js": [
+        "content/content.js"
+      ]
+    }
+  ]
 }
