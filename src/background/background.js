@@ -3,6 +3,6 @@ chrome.runtime.onMessage.addListener(
         if (request.popup && request.popup.message) {
             console.log(request.popup.message);
         }
-        sendResponse({content: {response: 'Response from Background!'}});
+        sendResponse({background: {response: 'Response from Background!'}});
     }
 );

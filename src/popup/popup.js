@@ -14,7 +14,7 @@ button.addEventListener('click', () => {
     });
 
     chrome.runtime.sendMessage({popup: {message: 'Hello from popup!'}}, (response) => {
-        if (response && response.background) console.log(response);
+        if (response && response.background) console.log(response.background.response);
     });
 });
 
