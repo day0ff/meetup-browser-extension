@@ -1,4 +1,8 @@
-chrome.runtime.onMessage.addListener(
+import { BrowserApiWrapper } from '../assets/api/browser-api-wrapper.js';
+
+const browser = new BrowserApiWrapper().browser;
+
+browser.runtime.onMessage.addListener(
     (request, sender, sendResponse) => {
         if (request.popup && request.popup.message) {
             console.log(request.popup.message);

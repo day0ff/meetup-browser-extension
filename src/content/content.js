@@ -1,3 +1,7 @@
+import { BrowserApiWrapper } from '../assets/api/browser-api-wrapper.js';
+
+const browser = new BrowserApiWrapper().browser;
+
 const BROWSER_ICON = {
     'Chrome': 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png',
     'Firefox': 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Firefox_Logo%2C_2017.svg/1024px-Firefox_Logo%2C_2017.svg.png',
@@ -12,10 +16,10 @@ const BROWSER_COMPANY = {
     'Edge': 'Microsoft'
 };
 
-chrome.runtime.onMessage.addListener(
+browser.runtime.onMessage.addListener(
     (request, sender, sendResponse) => {
         if (request.popup && request.popup.message) {
-            console.log(request.popup.message.dominated, request.popup.message.dominated);
+            console.log(request.popup.message.dominator, request.popup.message.dominated);
             dominateBrowser(request.popup.message.dominator, request.popup.message.dominated);
         }
         sendResponse({content: {response: 'Response from Content!'}});

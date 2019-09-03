@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Browser Dominator",
   "description": "Replaces the name and pictures of one browser with another.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "icons": {
     "48": "icons/icon-48.png"
   },
