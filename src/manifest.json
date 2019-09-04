@@ -1,15 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "Browser Dominator",
-  "description": "Replaces the name and pictures of one browser with another.",
-  "version": "0.5.0",
+  "name": "'Rick and Morty' Replacer",
+  "description": "Replaces a famous person with random character from 'Rick and Morty'.",
+  "version": "0.6.0",
   "icons": {
-    "48": "icons/icon-48.png"
+    "48": "icons/icon-48-rick.png"
   },
   "browser_action": {
-    "default_icon": "icons/icon-48.png",
-    "default_title": "Browser Dominator",
-    "default_popup": "popup/popup.html"
+    "default_icon": "icons/icon-48-rick.png"
   },
   "permissions": [
     "activeTab"
@@ -22,7 +20,6 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.google.com/*",
         "*://*.wikipedia.org/*"
       ],
       "js": [
