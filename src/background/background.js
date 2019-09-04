@@ -1,20 +1,27 @@
-import * as config from '../../config.json';
 import { BrowserApiWrapper } from '../api/browser-api-wrapper.js';
 
 const browser = new BrowserApiWrapper().browser;
 
-browser.browserAction.onClicked.addListener(() => {
-    browser.tabs.query({active: true, currentWindow: true}, (tabs) => {
-        const activeTab = tabs[0];
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    if (message.fetch) {
 
-        fetch(`${config.url}/characters/random`)
-            .then(response => response.json())
-            .then(character => {
-                browser.tabs.sendMessage(
-                    activeTab.id,
-                    {background: {message: character}},
-                    response => console.log(response.content.response)
-                );
-            });
-    });
+        fetch(message.fetch.url, message.fetch.options)
+            .then(response => {
+                const init = {
+                    status: response.status,
+                    statusText: response.text
+                };
+                const body = response.json();
+
+                return Promise.all([body, init]);
+            })
+            .then(response => {
+                const [body, init] = response;
+
+                return sendResponse({body, init});
+            })
+            .catch(error => sendResponse({error: error.message}));
+
+        return true;
+    }
 });

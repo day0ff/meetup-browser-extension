@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
   "name": "'Rick and Morty' Replacer",
-  "description": "Replaces a famous person with random character from 'Rick and Morty'.",
-  "version": "0.6.0",
+  "description": "Replaces a famous person with an associated character from 'Rick and Morty'.",
+  "version": "0.7.0",
   "icons": {
     "48": "icons/icon-48-rick.png"
   },

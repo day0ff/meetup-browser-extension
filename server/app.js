@@ -16,6 +16,16 @@ app.use(bodyParser.json());
 low(adapter)
     .then(db => {
 
+        app.get('/character/:name', (req, res) => {
+            const character = db.get('characters')
+                .find({
+                    'association': req.params.name
+                })
+                .value();
+
+            res.send(character)
+        });
+
         app.get('/characters', (req, res) => {
             const characters = db.get('characters')
                 .value();

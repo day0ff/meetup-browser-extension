@@ -33,21 +33,21 @@
       "first_name": "Summer",
       "last_name": "Smith",
       "url": "https://vignette.wikia.nocookie.net/rickandmorty/images/a/ad/Summer_is_cool.jpeg/revision/latest/scale-to-width-down/310?cb=20160919183158",
-      "association":"Sofia_Kovalevskaya"
+      "association":"Maryna_Viazovska"
     },
     {
       "id": 6,
       "first_name": "Jerry",
       "last_name": "Smith",
       "url": "https://vignette.wikia.nocookie.net/rickandmorty/images/f/f1/Jerry_Smith.png/revision/latest/scale-to-width-down/310?cb=20160923151111",
-      "association":""
+      "association":"Isaac_Newton"
     },
     {
       "id": 7,
       "first_name": "Rick",
       "last_name": "Pickle",
       "url": "https://vignette.wikia.nocookie.net/rickandmorty/images/1/19/Pickle_rick_transparent.png/revision/latest/scale-to-width-down/310?cb=20171025014216",
-      "association":""
+      "association":"Enrico_Fermi"
     }
   ]
 }
