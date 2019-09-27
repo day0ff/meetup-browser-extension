@@ -1,0 +1,5 @@
+{
+  "manifest_version": 2,
+  "name": "Minimal possible extension.",
+  "version": "0.1.0"
+}
