@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "'Rick and Morty' Replacer",
+  "description": "Replaces a famous person with random character from 'Rick and Morty'.",
+  "version": "0.6.0",
+  "icons": {
+    "48": "icons/icon-48-rick.png"
+  },
+  "browser_action": {
+    "default_icon": "icons/icon-48-rick.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "scripts": [
+      "background/background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.wikipedia.org/*"
+      ],
+      "js": [
+        "content/content.js"
+      ]
+    }
+  ]
+}
