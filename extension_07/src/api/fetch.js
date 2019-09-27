@@ -1,4 +1,4 @@
-import { BrowserApiWrapper } from '../api/browser-api-wrapper.js';
+import { BrowserApiWrapper } from './browser-api-wrapper.js';
 
 const browser = new BrowserApiWrapper().browser;
 
